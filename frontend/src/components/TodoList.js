@@ -105,32 +105,41 @@ function TodoList({ username, onLogout }) {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h2>Todo List for: {username}</h2>
-                <button onClick={handleLogout}>Logout</button>
+            <div className="border rounded p-3">
+                <h2 className="mb-0">Todo List for: {username}</h2>
+                <button className='btn btn-outline-danger btn-sm' onClick={handleLogout}>Logout</button>
             </div>
-            
-            <form onSubmit={handleAddTodo}>
+            <br/>
+            <form className="d-flex gap-2 mb-4" onSubmit={handleAddTodo}>
                 <input
+                    className="form-control"
                     type="text"
                     placeholder="New Task"
                     value={newTask}
                     onChange={(e) => setNewTask(e.target.value)}
                 />
-                <button type="submit">Add Task</button>
+                <button className='btn btn-primary' type="submit">Add Task</button>
             </form>
-
-            <ul>
+ 
+            <ul className="list-group">
                 {todos.map(todo => (
-                    <li key={todo.id} style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                        <input
-                            type="checkbox"
-                            checked={!!todo.done} // Convert MySQL's 0/1 to boolean
-                            onChange={() => handleToggleDone(todo.id, todo.done)}
-                        />
-                        {todo.task} 
+                    <li
+                     className="list-group-item d-flex justify-content-between align-items-center" key={todo.id}>
+                        <div className="d-flex align-items-center gap-2">
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                checked={!!todo.done} // Convert MySQL's 0/1 to boolean
+                                onChange={() => handleToggleDone(todo.id, todo.done)}
+                            />
+                            <span
+                            className={todo.done ? "text-decoration-line-through" : ""}
+                            >{todo.task}</span>
+                            
+                        </div>
+                        
                         <small> (Updated: {new Date(todo.updated).toLocaleString()})</small>
-                        <button onClick={() => handleDeleteTodo(todo.id)} style={{ marginLeft: '10px' }}>Delete</button>
+                        <button className="btn btn-sm btn-outline-danger" onClick={() => handleDeleteTodo(todo.id)} style={{ marginLeft: '10px' }}>Delete</button>
                     </li>
                 ))}
             </ul>

@@ -25,8 +25,14 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <h1>Full Stack Todo App</h1>
+        <>
+        <div className='navbar px-2 bg-primary'>
+                <h1 className='fw-bold text-white'>Full Stack Todo App</h1>
+                <img src="./logo.svg" className="rounded float-end" alt="..." style={{ width: "100px", height: "100px" }}/>
+        </div>
+        <br/>
+        <div className="container">
+            
             {/* Conditional rendering based on login status */}
             {currentUser ? (
                 <TodoList username={currentUser} onLogout={handleLogout} />
@@ -34,6 +40,7 @@ function App() {
                 <Login onLogin={handleLogin} />
             )}
         </div>
+        </>
     );
 }
 

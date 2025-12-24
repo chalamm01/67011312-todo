@@ -50,16 +50,24 @@ function Login({ onLogin }) {
 
     return (
         <div>
-            <h2>Login (Username Only)</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Enter your username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <button type="submit">Login</button>
-            </form>
+            
+            <div className='mx-auto p-2 m-4 border rounded p-9' style={{width:'300px'}}>
+                <br/>
+                <h2 className='text-center fw-bold'>Login</h2>
+                <form className="mx-auto p-2 m-4" style={{width:'200px'}} onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Enter your username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <br/>
+                    <br/> 
+                    <div className='d-flex justify-content-center align-items-center'>
+                        <button className="btn btn-primary btn-lg" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
